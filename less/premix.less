@@ -1,0 +1,91 @@
+.border-radius (@radius: 5px, @rest ...) {
+	-webkit-border-radius: @arguments;
+	-moz-border-radius: @arguments;
+	border-radius: @arguments;
+}
+
+/*Box shadow*/
+.box-shadow ( @x: 0, @y: 0, @blur: 0, @spread: 0, @color: rgba(0,0,0,.5), @rest ... ){
+
+	-webkit-box-shadow: @rest @x @y @blur @spread @color;
+	-moz-box-shadow:    @rest @x @y @blur @spread @color;
+	box-shadow:         @rest @x @y @blur @spread @color;
+
+}
+
+/**/
+
+/*Cross-browser opacity*/
+.opacity(@val: 0.5){
+	.opacityIE(@val);
+//	-moz-opacity: @val;                                                     /* Netscape */
+//	-khtml-opacity: @val;                                                    /* Safari 1.x */
+	opacity: @val;
+
+}
+.opacityIE(@val: 0.5){
+	@val100: @val*100;
+	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{val100})";	    /* IE 8 */
+	filter: ~"alpha(opacity=@{val100})";	                                        /* IE 5-7 */
+}
+
+/**/
+
+.transition (@prop: all, @time: 1s, @ease: linear) {
+	-webkit-transition: @prop @time @ease;
+	-moz-transition: @prop @time @ease;
+	-o-transition: @prop @time @ease;
+	-ms-transition: @prop @time @ease;
+	transition: @prop @time @ease;
+}
+
+.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
+	-webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	-moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	-o-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	-ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+	transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+}
+
+
+.box-sizing (@prop: border-box){
+	-webkit-box-sizing: @prop;
+	-moz-box-sizing: @prop;
+	box-sizing: @prop;
+
+}
+
+
+.backgroundClip(@prop:content-box){ // border-box  | padding-box | content-box
+
+	-moz-background-clip: @prop;     /* Firefox 3.6 */
+	-webkit-background-clip: @prop;  /* Safari 4? Chrome 6? */
+	background-clip: @prop;         /* Firefox 4, Safari 5, Opera 10, IE 9 */
+
+}
+
+.placeholder(@color: #999) {
+	&::-webkit-input-placeholder {
+		color: @color;
+	}
+	&:-moz-placeholder {
+		/* Firefox 18- */
+		color: @color;
+	}
+	&::-moz-placeholder {
+		/* Firefox 19+ */
+		color: @color;
+	}
+	&:-ms-input-placeholder {
+		color: @color;
+	}
+}
+
+.ellipsis() {
+
+	text-overflow:  ellipsis;
+	white-space:    nowrap;
+	overflow:       hidden;
+
+}
+
