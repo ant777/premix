@@ -1,91 +1,130 @@
+/*Border shadow*/
 .border-radius (@radius: 5px, @rest ...) {
-	-webkit-border-radius: @arguments;
-	-moz-border-radius: @arguments;
-	border-radius: @arguments;
+	-webkit-border-radius:  @arguments;
+	-moz-border-radius:     @arguments;
+	border-radius:          @arguments;
 }
 
 /*Box shadow*/
 .box-shadow ( @x: 0, @y: 0, @blur: 0, @spread: 0, @color: rgba(0,0,0,.5), @rest ... ){
-
-	-webkit-box-shadow: @rest @x @y @blur @spread @color;
-	-moz-box-shadow:    @rest @x @y @blur @spread @color;
-	box-shadow:         @rest @x @y @blur @spread @color;
-
+	-webkit-box-shadow:     @rest @x @y @blur @spread @color;
+	-moz-box-shadow:        @rest @x @y @blur @spread @color;
+	box-shadow:             @rest @x @y @blur @spread @color;
 }
-
-/**/
 
 /*Cross-browser opacity*/
 .opacity(@val: 0.5){
 	.opacityIE(@val);
-//	-moz-opacity: @val;                                                     /* Netscape */
-//	-khtml-opacity: @val;                                                    /* Safari 1.x */
-	opacity: @val;
-
+	opacity:                @val;
+	//	-moz-opacity: @val;                                                     /* Netscape */
+	//	-khtml-opacity: @val;                                                    /* Safari 1.x */
 }
+
+/*IE 5+ opacity*/
 .opacityIE(@val: 0.5){
-	@val100: @val*100;
-	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{val100})";	    /* IE 8 */
-	filter: ~"alpha(opacity=@{val100})";	                                        /* IE 5-7 */
+	@val100:                @val*100;
+	-ms-filter:             ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{val100})";	        /* IE 8 */
+	filter:                 ~"alpha(opacity=@{val100})";	                                        /* IE 5-7 */
 }
 
-/**/
-
-.transition (@prop: all, @time: 1s, @ease: linear) {
-	-webkit-transition: @prop @time @ease;
-	-moz-transition: @prop @time @ease;
-	-o-transition: @prop @time @ease;
-	-ms-transition: @prop @time @ease;
-	transition: @prop @time @ease;
+/*Transition*/
+.transition ( @time: 1s, @prop: all, @ease: linear, @delay: 0s) {
+	-webkit-transition:     @time @delay @prop @ease;
+	-moz-transition:        @time @delay @prop @ease;
+	-o-transition:          @time @delay @prop @ease;
+	transition:             @time @delay @prop @ease;
 }
 
-.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
-	-webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
-	-moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
-	-o-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
-	-ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
-	transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+/*Transform*/
+.transform ( @translateX: 0, @translateY: 0, @scaleX: 0, @scaleY: 0, @rotateX: 90deg, @rotateY: 90deg, @skewX: 0deg, @skewY: 0deg) {
+	-webkit-transform:      rotateX(@rotateX) rotateY(@rotateY) scale(@scaleX, @scaleY) skewX(@skewX) skewY(@skewY) translate(@translateX, @translateY);
+	-moz-transform:         rotateX(@rotateX) rotateY(@rotateY) scale(@scaleX, @scaleY) skewX(@skewX) skewY(@skewY) translate(@translateX, @translateY);
+	-ms-transform:          rotateX(@rotateX) rotateY(@rotateY) scale(@scaleX, @scaleY) skewX(@skewX) skewY(@skewY) translate(@translateX, @translateY);
+	-o-transform:           rotateX(@rotateX) rotateY(@rotateY) scale(@scaleX, @scaleY) skewX(@skewX) skewY(@skewY) translate(@translateX, @translateY);
+	transform:              rotateX(@rotateX) rotateY(@rotateY) scale(@scaleX, @scaleY) skewX(@skewX) skewY(@skewY) translate(@translateX, @translateY);
 }
-
-
+.translate(@x:0, @y: 0){
+	-webkit-transform:      translate(@x, @y);
+	-moz-transform:         translate(@x, @y);
+	-ms-transform:          translate(@x, @y);
+	-o-transform:           translate(@x, @y);
+	transform:              translate(@x, @y);
+}
+.translateX(@x:0){
+	-webkit-transform:      translateX(@x);
+	-moz-transform:         translateX(@x);
+	-ms-transform:          translateX(@x);
+	-o-transform:           translateX(@x);
+	transform:              translateX(@x);
+}
+.translateY(@y:0){
+	-webkit-transform:      translateY(@y);
+	-moz-transform:         translateY(@y);
+	-ms-transform:          translateY(@y);
+	-o-transform:           translateY(@y);
+	transform:              translateY(@y);
+}
+.scale(@x:0, @y: 0){
+	-webkit-transform:      scale(@x, @y);
+	-moz-transform:         scale(@x, @y);
+	-ms-transform:          scale(@x, @y);
+	-o-transform:           scale(@x, @y);
+	transform:              scale(@x, @y);
+}
+.scaleX(@x:0){
+	-webkit-transform:      scaleX(@x);
+	-moz-transform:         scaleX(@x);
+	-ms-transform:          scaleX(@x);
+	-o-transform:           scaleX(@x);
+	transform:              scaleX(@x);
+}
+.scaleY(@y:0){
+	-webkit-transform:      scaleY(@y);
+	-moz-transform:         scaleY(@y);
+	-ms-transform:          scaleY(@y);
+	-o-transform:           scaleY(@y);
+	transform:              scaleY(@y);
+}
+/*Box-sizing*/
 .box-sizing (@prop: border-box){
-	-webkit-box-sizing: @prop;
-	-moz-box-sizing: @prop;
-	box-sizing: @prop;
+	-webkit-box-sizing:     @prop;
+	-moz-box-sizing:        @prop;
+	box-sizing:             @prop;
 
 }
+k{
+	.translateX;
+	.translateY;
+	.transform;
+}
 
-
+/*Background-clip*/
 .backgroundClip(@prop:content-box){ // border-box  | padding-box | content-box
-
-	-moz-background-clip: @prop;     /* Firefox 3.6 */
 	-webkit-background-clip: @prop;  /* Safari 4? Chrome 6? */
-	background-clip: @prop;         /* Firefox 4, Safari 5, Opera 10, IE 9 */
-
+	-moz-background-clip:    @prop;     /* Firefox 3.6 */
+	background-clip:         @prop;         /* Firefox 4, Safari 5, Opera 10, IE 9 */
 }
 
 .placeholder(@color: #999) {
 	&::-webkit-input-placeholder {
-		color: @color;
+		color:              @color;
 	}
 	&:-moz-placeholder {
 		/* Firefox 18- */
-		color: @color;
+		color:              @color;
 	}
 	&::-moz-placeholder {
 		/* Firefox 19+ */
-		color: @color;
+		color:              @color;
 	}
 	&:-ms-input-placeholder {
-		color: @color;
+		color:              @color;
 	}
 }
 
 .ellipsis() {
-
-	text-overflow:  ellipsis;
-	white-space:    nowrap;
-	overflow:       hidden;
-
+	text-overflow:          ellipsis;
+	white-space:            nowrap;
+	overflow:               hidden;
 }
 
