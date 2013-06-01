@@ -92,14 +92,9 @@
 	box-sizing:             @prop;
 
 }
-k{
-	.translateX;
-	.translateY;
-	.transform;
-}
 
 /*Background-clip*/
-.backgroundClip(@prop:content-box){ // border-box  | padding-box | content-box
+.background-clip(@prop:content-box){ // border-box  | padding-box | content-box
 	-webkit-background-clip: @prop;  /* Safari 4? Chrome 6? */
 	-moz-background-clip:    @prop;     /* Firefox 3.6 */
 	background-clip:         @prop;         /* Firefox 4, Safari 5, Opera 10, IE 9 */

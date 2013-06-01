@@ -1,7 +1,8 @@
 Premix
 ======
 
-Set of pre-defined LESS mixins for cross-browser prefixing.
+Set of pre-defined LESS and SCSS mixins for cross-browser prefixing.
+
 Includes:
 
 - .border-radius
