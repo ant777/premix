@@ -23,10 +23,9 @@
 /*IE 5+ opacity*/
 .opacityIE(@val: 0.5){
 	@val100:                @val*100;
-	-ms-filter:             ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{val100})";	        /* IE 8 */
-	filter:                 ~"alpha(opacity=@{val100})";	                                        /* IE 5-7 */
+	-ms-filter:             "progid:DXImageTransform.Microsoft.Alpha(Opacity=@{val100})";	        /* IE 8 */
+	filter:                 "alpha(opacity=@{val100})";	                                        /* IE 5-7 */
 }
-
 /*Transition*/
 .transition ( @time: 1s, @prop: all, @ease: linear, @delay: 0s) {
 	-webkit-transition:     @time @delay @prop @ease;
