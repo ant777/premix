@@ -26,9 +26,6 @@
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$val100+")"; /* IE 8 */
     filter: "alpha(opacity="+$val100+")"; /* IE 5-7 */
 }
-a{
-    @include opacity();
-}
 ///*Transition*/
 @mixin transition($time: 1s, $prop: all, $ease: linear, $delay: 0s) {
     -webkit-transition: $time $delay $prop $ease;
