@@ -84,6 +84,13 @@
 	-o-transform:           scaleY(@y);
 	transform:              scaleY(@y);
 }
+.transform-style(@val: preserve-3d){
+	-webkit-transform-style: @val;
+	-moz-transform-style: @val;
+	-o-transform-style: @val;
+	transform-style: @val;
+
+}
 
 .rotateY(@deg: 180deg){
 	-webkit-transform:      rotateY(@deg);
