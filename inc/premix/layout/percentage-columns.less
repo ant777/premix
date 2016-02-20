@@ -1,0 +1,50 @@
+.percentage-columns-3(@leftColWidth: 25%, @rightColWidth: 25%, @mainLeftPadding: 0px, @mainRightPadding: 0px) {
+
+    .col,
+    .wrap {
+        float: left;
+    }
+    .wrap {
+        width: 100%;
+    }
+    .main {
+        margin: 0 @rightColWidth 0 @leftColWidth;
+        padding: 0 @mainRightPadding 0 @mainLeftPadding;
+    }
+
+    .col-left {
+        width: @leftColWidth;
+        margin-left: -100%;
+    }
+    .col-right {
+        width: @rightColWidth;
+        margin-left: -@rightColWidth;
+    }
+
+}
+
+.layout-main-aside (@mainClass: main, @cols: col1 200px lhs col2 300px rhs col3 400px lhs) {
+
+    .col,
+    .@{mainClass} {
+        float: left;
+    }
+
+    .@{mainClass} > .main {
+        margin: 0 100px;
+        padding: 0 20px;
+
+    }
+    .generate-aside-col(@count: 3,@cols:@cols);
+}
+
+.generate-aside-col(@i:1,@count,@cols ) when (@i =< @count ) {
+    @cName: extract(@cols, @i*3-2);
+    @width: extract(@cols, @i*3-1);
+    @position: extract(@cols, @i*3);
+    .@{cName} {
+        width: @width;
+        margin-left: -100%;
+    }
+    .generate-aside-col(@i: @i+1,@count: @count, @cols:@cols);
+}

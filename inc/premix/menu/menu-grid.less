@@ -1,0 +1,85 @@
+.menu-grid(
+    @display: block,
+    @float: none,
+    @color: rgba(255,255,255,.8),
+    @itemSize: fixedPadding,
+    @itemAlignment: center,
+    @menuBackgroundColor: red,
+    @itemBackgroundColor: green,
+    @itemBackgroundColor: green,
+    @itemPaddingTop: 5px,
+    @itemPaddingLeft: 10px
+) {
+
+    .menu-item {
+        a {
+            padding: @itemPaddingTop @itemPaddingLeft;
+            background-color: @itemBackgroundColor;
+            color: @color;
+            display: block;
+        }
+    }
+    & when (@display = inline-block) {
+
+        text-align: @itemAlignment;
+
+        ul {
+            display: block;
+        }
+    }
+    & when (@display = block) {
+        ul {
+            display: block;
+            a {
+                width: auto;
+            }
+        }
+    }
+    & when (@display = block) and not(float=none) {
+        float: @float;
+    }
+    background-color: @menuBackgroundColor;
+    & when (@display = flex) {
+
+        ul {
+
+            .flex;
+            //.flex-wrap();
+            .justify-content(@itemAlignment);
+            .menu-item {
+                .flex-grow(1);
+                .flex-shrink(1);
+
+            }
+            a {
+                width: 100%;
+            }
+        }
+    }
+    .menu-item when (@itemSize = fixedPadding) {
+        display: @display;
+    }
+    .menu-item when (isnumber(@itemSize)) {
+        width: @itemSize;
+        display: @display;
+    }
+}
+
+.fixed-menu (
+    @attachment: left
+) {
+
+    position: fixed;
+    @{attachment}: 0;
+    & when ( @attachment = top ), ( @attachment = bottom) {
+        position: fixed;
+        left: 0;
+        right: 0;
+        @{attachment}: 0;
+
+    };
+    & when ( @attachment = left ), ( @attachment = right) {
+        top: 0;
+        bottom: 0;
+    };
+}

@@ -1,0 +1,28 @@
+.checkbox() {
+    input[type="checkbox"] {
+        display: none;
+        & + label:before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #333;
+            margin-right: 10px;
+            overflow: hidden;
+
+        }
+        & + label:hover:before {
+            background: #ccc;
+
+        }
+        &:checked + label:before {
+            content: attr(data-check);
+            line-height: 10px;
+            font-weight: bold;
+        }
+        & + label:active:before {
+            background: red;
+
+        }
+    }
+}

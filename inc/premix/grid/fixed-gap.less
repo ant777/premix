@@ -1,0 +1,98 @@
+.grid-fixed-gap (@cols: 4, @gapCol: 20px, @gapRow: 20px) {
+    .flex;
+    .flex-wrap;
+    .grid-item {
+        position: relative;
+        width: 100%/@cols;
+        .box-sizing();
+        margin-bottom: @gapRow;
+        .generate-padding(@cols:@cols,@gapCol:@gapCol,@prevPaddingCnt:@cols);
+        &:nth-last-child(-n + @{cols}):nth-child(@{cols}n + 1), /* first element of the last row */
+        &:nth-last-child(-n + @{cols}):nth-child(@{cols}n + 1) ~ .grid-item /* all its following elements */
+        {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.grid-fixed-gap-w-gutters (@cols: 4, @gapCol: 20px, @gapRow: 20px) {
+    .flex;
+    .flex-wrap;
+    padding-top: @gapRow;
+    .grid-item {
+        position: relative;
+        width: 100%/@cols;
+        .box-sizing();
+        margin-bottom: @gapRow;
+        .generate-padding-w-gutter(@cols:@cols,@gapCol:@gapCol,@prevPaddingCnt:@cols);
+
+    }
+}
+/*
+
+.debug(@var) {
+    position: relative;
+    &:after {
+        content: "@{var}";
+        font-size: 20px;
+        background-color: #fff;
+        border: 1px solid red;
+        padding: 10px;
+        border-radius: 5px;
+        color: red;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+}
+*/
+
+.generate-padding-w-gutter( @i: 1, @cols, @prevPaddingCnt:0, @gapCol) when (@i =< @cols) {
+    @v: %(~"%an+%a", @cols, @i);
+    @gaps: @cols + 1;
+    @prevPaddingCntNew: @gaps;
+    & when (@i=1){
+        @pRight: @gapCol/@cols;
+        &:nth-child(@{v}) {
+            padding: 0 @pRight 0 @gapCol;
+        }
+    }
+
+    & when (@i>1){
+        &:nth-child(@{v}) {
+            @pLeft: @gapCol * @prevPaddingCnt / @cols;
+            @pRight: @gapCol * ( @gaps - @prevPaddingCnt ) / @cols;
+            padding: 0 @pRight 0 @pLeft;
+        }
+    }
+
+    .generate-padding-w-gutter(@i + 1, @cols,@prevPaddingCnt: @cols - @gaps + @prevPaddingCnt, @gapCol);
+}
+
+
+
+
+.generate-padding( @i: 1, @cols, @prevPaddingCnt:0, @gapCol) when (@i =< @cols) {
+    @v: %(~"%an+%a", @cols, @i);
+    @gaps: @cols - 1;
+    @prevPaddingCntNew: @gaps;
+    & when (@i=1){
+        @prevPaddingCntNew: @gaps;
+        @pRight: @gapCol*@gaps/@cols;
+        &:nth-child(@{v}) {
+            padding: 0 @pRight 0 0;
+        }
+    }
+
+    & when (@i>1){
+        @prevPaddingCntNew: @gaps - @cols + @prevPaddingCnt;
+        &:nth-child(@{v}) {
+            @pLeft: @gapCol * ( @cols - @prevPaddingCnt ) / @cols;
+            @pRight: @gapCol * ( @gaps - @cols + @prevPaddingCnt ) / @cols;
+            padding: 0 @pRight 0 @pLeft;
+        }
+    }
+
+    .generate-padding(@i + 1, @cols,@prevPaddingCnt: @gaps - @cols + @prevPaddingCnt, @gapCol);
+}

@@ -1,0 +1,35 @@
+.radio() {
+    input[type="radio"] {
+        display: none;
+        & + label:before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+
+        & + label:hover:before {
+            background: #ccc;
+
+        }
+        &:checked + label:before {
+            padding: 2px;
+            width: 6px;
+            height: 6px;
+            background: #333;
+            background-clip: content-box;
+            text-align: center;
+            line-height: 10px;
+            font-size: 99px;
+            font-weight: bold;
+        }
+        & + label:active:before {
+            background: red;
+
+        }
+    }
+}

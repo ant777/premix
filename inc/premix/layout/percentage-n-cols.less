@@ -1,0 +1,11 @@
+.percentage-n-cols() {
+    .col {
+        float: left;
+    }
+    .repeat-col(@arguments);
+}
+
+.repeat-col(@c1, @c2) when (@c1) {
+    .repeat-col();
+
+}

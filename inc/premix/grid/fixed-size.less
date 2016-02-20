@@ -1,0 +1,10 @@
+.grid-fixed-size (@alignment: center, @size: 200px, @gapCol: 20px, @gapRow: 20px) {
+    display: block;
+    text-align: @alignment;
+
+    .grid-item {
+        display: inline-block;
+        width: @size;
+        margin: @gapRow @gapCol;
+    }
+}

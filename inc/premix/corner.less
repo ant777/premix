@@ -1,0 +1,22 @@
+.corner(@w: 5px, @h: 7px, @color: #fff, @dir: n) {
+    width: 0;
+    height: 0;
+    border: @w*.5 solid transparent;
+    border-top: @h*.5 solid transparent;
+    border-bottom: @h*.5 solid transparent;
+    & when (@dir = n) {
+        border-top: @h solid transparent;
+        border-bottom: @h solid @color;
+    }
+    & when (@dir = w) {
+        border-right-color: @color;
+    }
+    & when (@dir = s) {
+        border-bottom: @h solid transparent;
+        border-top: @h solid @color;
+    }
+    & when (@dir = e) {
+        border-left-color: @color;
+    }
+
+}

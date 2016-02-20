@@ -1,0 +1,11 @@
+.scrollable-table(@width: 100%, @colWidth: 500px){
+    overflow: auto;
+    width: @width;
+    table{
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+    th{
+        min-width: @colWidth;
+    }
+}

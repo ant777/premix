@@ -20,3 +20,5 @@ Includes:
 - .background-clip
 - .placeholder
 - .ellipsis
+### Grid ###
+- [Fixed gap grid](docs/grid/fixed-gap.md)

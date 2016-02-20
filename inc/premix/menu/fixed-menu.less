@@ -1,0 +1,19 @@
+
+.fixed-menu (
+    @attachment: left
+) {
+
+    position: fixed;
+    @{attachment}: 0;
+    & when ( @attachment = top ), ( @attachment = bottom) {
+        position: fixed;
+        left: 0;
+        right: 0;
+        @{attachment}: 0;
+
+    };
+    & when ( @attachment = left ), ( @attachment = right) {
+        top: 0;
+        bottom: 0;
+    };
+}
