@@ -7,3 +7,4 @@ dist/
 .idea/
 
 *.css
+!samples/*/*.css
