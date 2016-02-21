@@ -1,0 +1,56 @@
+.grid-block-percent-gap (
+    @cols: 4,
+    @gapCol: 2%,
+    @gapRow: 2%
+) {
+    display: block;
+    .clearfix;
+    .grid-item {
+        width: 100%/@cols - @gapCol+@gapCol/@cols;
+        margin: 0 @gapCol @gapRow 0;
+
+        float: left;
+        @sel: %(~"%an+%a", @cols, @cols);
+        @sel2: %(~"%an+%a", @cols, @cols+1);
+        &:nth-child(@{sel}) {
+            margin-right: 0;
+
+        }
+        &:nth-child(@{sel2}) {
+
+            clear: left;
+        }
+    }
+}
+
+.grid-inline-block-percent-gap (
+    @verticalAlign: top,
+    @gridAlign: left,
+    @textAlign: left,
+    @cols: 4,
+    @gapCol: 2%,
+    @gapRow: 2%
+) {
+    display: block;
+    text-align: @gridAlign;
+    .grid-item {
+        display: inline-block;
+        width: 100%/@cols - @gapCol+@gapCol/@cols;
+        vertical-align: @verticalAlign;
+        margin: 0 @gapCol @gapRow 0;
+        text-align: @textAlign;
+        @sel: %(~"%an+%a", @cols, @cols);
+        @sel2: %(~"%an+%a", @cols, @cols+1);
+        &:nth-child(@{sel}) {
+            margin-right: 0;
+        }
+        &:nth-child(@{sel2}) {
+            clear: left;
+        }
+        &:nth-last-child(-n + @{cols}):nth-child(@{cols}n + 1), /* first element of the last row */
+        &:nth-last-child(-n + @{cols}):nth-child(@{cols}n + 1) ~ .grid-item /* all its following elements */
+        {
+            margin-bottom: 0;
+        }
+    }
+}
